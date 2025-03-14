@@ -23,12 +23,11 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi data
         $validator = Validator::make($request->all(), [
-            'nis' => 'required|unique:mahasiswa,nis',
+            'nis' => 'required|unique:mahasiswas,nis',
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string',
-            'no_hp' => ['required', 'regex:/^[0-9]+$/', 'min:10', 'max:15'],
+            'no_hp' => 'required|regex:/^[0-9]+$/|min:10|max:15',
             'jenis_kelamin' => 'required|in:L,P',
             'hobi' => 'required|string'
         ]);
@@ -40,7 +39,6 @@ class MahasiswaController extends Controller
             ], 422);
         }
 
-        // Simpan data mahasiswa
         $mahasiswa = Mahasiswa::create($request->all());
 
         return response()->json([
@@ -81,12 +79,11 @@ class MahasiswaController extends Controller
             ], 404);
         }
 
-        // Validasi update (mengabaikan NIS yang sedang diedit)
         $validator = Validator::make($request->all(), [
-            'nis' => 'required|unique:mahasiswa,nis,' . $id . ',id',
+            'nis' => 'required|unique:mahasiswas,nis,' . $id,
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string',
-            'no_hp' => ['required', 'regex:/^[0-9]+$/', 'min:10', 'max:15'],
+            'no_hp' => 'required|regex:/^[0-9]+$/|min:10|max:15',
             'jenis_kelamin' => 'required|in:L,P',
             'hobi' => 'required|string'
         ]);
@@ -98,7 +95,6 @@ class MahasiswaController extends Controller
             ], 422);
         }
 
-        // Update data mahasiswa
         $mahasiswa->update($request->all());
 
         return response()->json([

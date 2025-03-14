@@ -19,7 +19,7 @@ class MahasiswaSeeder extends Seeder
                 'nama' => fake()->name(),
                 'alamat' => fake()->address(),
                 'no_hp' => fake()->phoneNumber(),
-                'jenis_kelamin' => fake()->randomElement(['Laki-laki', 'Perempuan']),
+                'jenis_kelamin' => fake()->randomElement(['L', 'P']),
                 'hobi' => fake()->word(),
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,7 +8,15 @@ class Mahasiswa extends Model
 {
     use HasFactory;
 
-    protected $table = 'mahasiswas';
+    protected $table = 'mahasiswas'; // Sesuaikan dengan nama tabel di database
+    protected $primaryKey = 'id';
 
-    protected $fillable = ['nis','nama','alamat','no_hp','jenis_kelamin','hobi'];
+    protected $fillable = [
+        'nis',
+        'nama',
+        'alamat',
+        'no_hp',
+        'jenis_kelamin',
+        'hobi'
+    ];
 }
