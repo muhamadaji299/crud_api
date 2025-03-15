@@ -80,12 +80,12 @@ class MahasiswaController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nis' => 'required|unique:mahasiswas,nis,' . $id,
-            'nama' => 'required|string|max:255',
-            'alamat' => 'required|string',
-            'no_hp' => 'required|regex:/^[0-9]+$/|min:10|max:15',
-            'jenis_kelamin' => 'required|in:L,P',
-            'hobi' => 'required|string'
+            'nis' => 'sometimes|unique:mahasiswas,nis,' . $id,
+            'nama' => 'sometimes|string|max:255',
+            'alamat' => 'sometimes|string',
+            'no_hp' => 'sometimes|regex:/^[0-9]+$/|min:10|max:15',
+            'jenis_kelamin' => 'sometimes|in:L,P',
+            'hobi' => 'sometimes|string'
         ]);
 
         if ($validator->fails()) {
@@ -102,7 +102,6 @@ class MahasiswaController extends Controller
             'data' => $mahasiswa
         ], 200);
     }
-
     /**
      * Menghapus data mahasiswa.
      */
